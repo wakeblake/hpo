@@ -1,0 +1,70 @@
+<template>
+    <lightning-card title="Set Up Donor Benefits">
+        <template if:true={pickListValues.data}>
+            <div class="slds-var-m-around_medium">
+                <lightning-input 
+                    id="don-amt-input" 
+                    type="number" 
+                    label="Donation Amount" 
+                    placeholder="Type donation amount" 
+                    formatter="currency" 
+                    step="0.01"
+                    oncommit={getDonationAmount}>
+                </lightning-input>
+                <template for:each={pickListValues.data.values} for:item="item">
+                    <lightning-layout key={pickListValues.data.values} vertical-align="center">
+                        <lightning-layout-item key={item.label} size="6" padding="around-small">
+                            <lightning-input 
+                                key={item.label}
+                                label={item.label}
+                                data-value={item.value}
+                                type="checkbox"
+                                onchange={getBenefitsSelected}>
+                            </lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item key={item.label} flexibility="auto" padding="around-small">
+                            <p key={item.value} class="slds-text-align_center"> X </p>
+                        </lightning-layout-item>
+                        <lightning-layout-item key={item.label} flexibility="auto" padding="around-small" class="slds-m-top_medium">
+                            <lightning-input
+                                name={item.label}
+                                key={item.label}
+                                type="number"
+                                placeholder="Number"
+                                oncommit={getNumberRecords}>
+                            </lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item key={item.label} flexibility="auto" padding="around-small" class="slds-m-top_medium">
+                            <lightning-input
+                                name={item.label}
+                                key={item.label}
+                                type="number"
+                                placeholder="$ value per"
+                                formatter="currency"
+                                step="0.01"
+                                oncommit={getDollarValues}>
+                            </lightning-input>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input id="add-ben-input" type="text" label="Add benefit" placeholder="Type benefit name and double-click below" onchange={handleAddInput}></lightning-input>
+                    <lightning-button id="add-ben-btn" label="Add Benefit" ondblclick={handleAddBenefit}></lightning-button>
+                </div>
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input id="del-ben-input" type="text" label="Delete benefit" placeholder="Type benefit name and double-click below" onchange={handleDeleteInput}></lightning-input>
+                    <lightning-button id="del-ben-btn" label="Delete Benefit" ondblclick={handleDeleteBenefit}></lightning-button>
+                </div>
+                <div class="slds-p-around_medium lgc-bg">
+                    <template if:true={benefitSettings.data}>
+                        <p><b>Benefits currently generated for the following donation amounts:</b></p>
+                        <template for:each={benefitSettings.data} for:item="record">
+                            <p key={record.Id}>{record.MasterLabel} ({record.Number__c}): {record.DonationAmount__c}</p>
+                        </template>
+                    </template>
+                </div>
+            </div>
+            <lightning-button class="slds-align_absolute-center" label="Submit" onclick={handleSubmit}></lightning-button>
+        </template>
+    </lightning-card>
+</template>

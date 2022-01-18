@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Permits admin user to create/update logic related to issuing benefits per donor per dollar amount</description>
+    <label>Benefit Setting</label>
+    <pluralLabel>Benefit Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

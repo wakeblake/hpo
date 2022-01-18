@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>View_Won_Only</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Volunteers should only be able to see won Opportunities</description>
+        <label>View Won Only</label>
+        <sharedTo>
+            <group>Volunteers</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IsWon</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>All_Opps</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Development Managers see all and update all Opportunities regardless of  ownership</description>
+        <label>All Opps</label>
+        <sharedTo>
+            <group>Development_Managers</group>
+        </sharedTo>
+        <sharedFrom>
+            <allInternalUsers/>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>View_All_Only</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Relationship Managers should be able to see all Opportunities, but only update the ones they  own</description>
+        <label>View All Only</label>
+        <sharedTo>
+            <group>Relationship_Managers</group>
+        </sharedTo>
+        <sharedFrom>
+            <allInternalUsers/>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>
